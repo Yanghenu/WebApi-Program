@@ -29,11 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgileConfig\AgileConfig.csproj" />
     <ProjectReference Include="..\CAP\CAP.csproj" />
     <ProjectReference Include="..\JWT_Authentication\JWT_Authentication.csproj" />
     <ProjectReference Include="..\Redis.Service\Redis.csproj" />
     <ProjectReference Include="..\SignalR\SignalR.csproj" />
-    <ProjectReference Include="E:\YiriCode\resource-pool\netcore\Common\YIRI.ConfigCenter\AgileConfig.csproj" />
   </ItemGroup>
 
 </Project>
