@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\Person_Lesson\FusionProgram\FusionProgram\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2024-01-19T09:27:47.0871463Z;True|2024-01-19T15:39:39.8848657+08:00;True|2024-01-19T14:34:39.4415533+08:00;True|2024-01-19T12:44:53.5605198+08:00;True|2024-01-19T12:44:07.3602031+08:00;True|2024-01-19T12:30:53.4750148+08:00;True|2024-01-19T12:29:05.5266908+08:00;True|2024-01-19T12:26:12.5925658+08:00;True|2024-01-19T12:25:54.3133441+08:00;True|2024-01-19T12:23:43.4928451+08:00;True|2024-01-18T10:28:02.5788450+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
