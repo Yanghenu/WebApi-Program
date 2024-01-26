@@ -5,9 +5,9 @@ using Serilog;
 using ServiceStack;
 using SignalR;
 using FusionProgram.Extensions;
-using JWT_Authentication.Authorization;
 using CustomConfigExtensions;
 using AgileConfig.Client;
+using FusionProgram.Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,10 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     {
         config.AddAgileConfigCanReadTemplate(new ConfigClient(configRoot));
     }
+});
+builder.Host.ConfigureServices((hostingContext, config) =>
+{
+    QuartzInit.InitJob();
 });
 
 builder.Services.AddControllers();
