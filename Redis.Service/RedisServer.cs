@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using ServiceStack.Logging;
 using ServiceStack.Redis;
 
 namespace Redis.Service

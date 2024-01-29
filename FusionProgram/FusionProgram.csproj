@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AgileConfig\AgileConfig.csproj" />
     <ProjectReference Include="..\CAP\CAP.csproj" />
+    <ProjectReference Include="..\Dapper\DapperSQL.csproj" />
     <ProjectReference Include="..\JWT_Authentication\JWT_Authentication.csproj" />
     <ProjectReference Include="..\Redis.Service\Redis.csproj" />
     <ProjectReference Include="..\SignalR\SignalR.csproj" />

@@ -2,12 +2,12 @@ using CAP;
 using Microsoft.OpenApi.Models;
 using Redis.Service;
 using Serilog;
-using ServiceStack;
 using SignalR;
 using FusionProgram.Extensions;
 using CustomConfigExtensions;
 using AgileConfig.Client;
 using FusionProgram.Quartz;
+using DapperSQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +21,9 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
         config.AddAgileConfigCanReadTemplate(new ConfigClient(configRoot));
     }
 });
-builder.Host.ConfigureServices((hostingContext, config) =>
+builder.Host.ConfigureServices((hostingContext, services) =>
 {
+    // 初始化定时任务
     QuartzInit.InitJob();
 });
 
@@ -121,6 +122,9 @@ builder.Services.AddTransient<MyMessageHandler>();
 
 // 添加redis
 builder.Services.AddSingleton<IRedisServer, RedisServer>();
+
+// 初始化Dapper
+DapperHelper.Initialize(builder.Configuration);
 
 builder.Services.AddLogging(builder =>
 {

@@ -1,4 +1,5 @@
 using CAP;
+using DapperSQL;
 using FusionProgram.Models;
 using JWT_Authentication.Authorization;
 using JwtSwaggerHc.API.V1.Models;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Redis.Service;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -69,6 +71,7 @@ namespace FusionProgram.Controllers
             })
             .ToArray();
         }
+
         /// <summary>
         /// »ñÈ¡RedisÖµ
         /// </summary>
@@ -85,6 +88,11 @@ namespace FusionProgram.Controllers
             return _redisServer.GetData(Key);
         }
 
+        /// <summary>
+        /// µÇÂ¼
+        /// </summary>
+        /// <param name="loginRequest"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
