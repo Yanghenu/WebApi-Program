@@ -181,7 +181,7 @@ namespace FusionProgram.Controllers
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(30),//token30·ÖÖÓ¹ýÆÚ
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
