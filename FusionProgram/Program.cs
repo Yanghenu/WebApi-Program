@@ -76,15 +76,6 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Scheme = "bearer"
     });
-    /*
-    c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        Description = "Please enter your username and password:",
-        Type = SecuritySchemeType.Http,
-        In = ParameterLocation.Header,
-        Scheme = "basic"
-    });*/
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -97,23 +88,6 @@ builder.Services.AddSwaggerGen(c =>
                 },
                 Scheme = "oauth2",
                 Name = "Bearer",
-                In = ParameterLocation.Header
-            },
-            new List<string>()
-        }
-    });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Id = "Basic",
-                    Type = ReferenceType.SecurityScheme
-                },
-                Scheme = "oauth2",
-                Name = "Basic",
                 In = ParameterLocation.Header
             },
             new List<string>()
