@@ -6,8 +6,9 @@ using SignalR;
 using FusionProgram.Extensions;
 using CustomConfigExtensions;
 using AgileConfig.Client;
-using FusionProgram.Quartz;
 using DapperSQL;
+using QuartzExtensions;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,14 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 builder.Host.ConfigureServices((hostingContext, services) =>
 {
     // 初始化定时任务
-    QuartzInit.InitJob();
+    // 方式一
+    FusionProgram.Quartz.QuartzInit.InitJob();
+
+    //方式二
+    services.AddQuartService();
+    services.AddServiceByInterface(o => o.Name == "FusionProgram");
+    IServiceProvider serviceProvider = services.BuildServiceProvider();
+    serviceProvider.UseQuartz(x => x.Name == "FusionProgram");
 });
 
 builder.Services.AddControllers();

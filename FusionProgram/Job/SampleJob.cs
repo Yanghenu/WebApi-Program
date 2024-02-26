@@ -7,7 +7,7 @@ namespace FusionProgram.Job
     /// SampleJob
     /// </summary>
     [DisallowConcurrentExecution]
-    [QuarzJobsConfig(GroupName = "SampleJob", JobGroup = "Test", Cron = "0/5 * * * * ?", JobType = QuartzJobType.WithCron, Description = "每5秒执行一次", JobState = JobState.Start)]
+    [QuarzJobsConfig(GroupName = "SampleJob", JobGroup = "Test", Cron = "0/5 * * * * ? ", JobType = QuartzJobType.WithCron, Description = "每5秒执行一次", JobState = JobState.Start)]
     public class SampleJob : IJob
     {
         /// <summary>

@@ -15,7 +15,7 @@
                 var scheduler = new QuartzScheduler();
                 scheduler.Start();
 
-                var filePath = "jobConfig.json";
+                var filePath = "_jobConfig.json";
 
                 // 加载 JSON 配置文件
                 var loadedJobConfig = scheduler.GenerateJobConfigFile(filePath);
