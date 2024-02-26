@@ -391,3 +391,4 @@ FodyWeavers.xsd
 # 其他需要忽略的
 DataProtection-Keys/
 提测文档/
+FusionProgram/_jobConfig.json
