@@ -30,6 +30,8 @@ builder.Host.ConfigureServices((hostingContext, services) =>
 
     //方式二
     services.AddQuartService();
+    //MinIO需要注入HttpClient
+    services.AddHttpClient();
     services.AddServiceByInterface(o => o.Name == "FusionProgram");
     IServiceProvider serviceProvider = services.BuildServiceProvider();
     serviceProvider.UseQuartz(x => x.Name == "FusionProgram");
