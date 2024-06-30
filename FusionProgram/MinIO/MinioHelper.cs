@@ -1,6 +1,6 @@
 ﻿using Minio;
 using System.Collections.Concurrent;
-using static FusionProgram.Extensions.ServiceCollectionExtensions;
+using static FusionProgram.Extensions.ServiceCollectionExtension;
 
 namespace FusionProgram.MinIO
 {

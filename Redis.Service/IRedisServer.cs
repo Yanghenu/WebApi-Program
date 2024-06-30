@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceStack.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,5 +55,10 @@ namespace Redis.Service
         /// <param name="key"></param>
         /// <returns></returns>
         public bool Exists(string key);
+        /// <summary>
+        /// GetRedisClientsManager
+        /// </summary>
+        /// <returns></returns>
+        IRedisClientsManager GetRedisClientsManager();
     }
 }

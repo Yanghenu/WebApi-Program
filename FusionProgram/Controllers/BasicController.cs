@@ -1,5 +1,6 @@
 using CAP;
 using DapperSQL;
+using FusionProgram.Extensions;
 using FusionProgram.Models;
 using JWT_Authentication.Authorization;
 using JwtSwaggerHc.API.V1.Models;
@@ -32,6 +33,8 @@ namespace FusionProgram.Controllers
         private readonly Publisher _cAPPublisher;
         private readonly ILogger<BasicController> _logger;
         private readonly IConfiguration _configuration;
+
+        private static int temp = 0;
 
         /// <summary>
         /// WeatherForecast
@@ -70,6 +73,38 @@ namespace FusionProgram.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        /// <summary>
+        /// 测试分布式锁
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = Policies.Admin)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        public string TestRedisLock()
+        {
+            var redisLock = new RedisLockExtension(_redisServer, "My_Lock", TimeSpan.FromSeconds(30));
+            if (redisLock.AcquireLock())
+            {
+                try
+                {
+                    // 执行业务逻辑
+                    System.Threading.Thread.Sleep(5000);
+                    return "Lock acquired. Performing work...   " + temp++;
+                }
+                finally
+                {
+                    redisLock.ReleaseLock();
+                    Console.WriteLine("Lock released.");
+                }
+            }
+            else
+            {
+                return "Failed to acquire lock.";
+            }
         }
 
         /// <summary>

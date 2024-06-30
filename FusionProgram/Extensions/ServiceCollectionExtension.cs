@@ -11,7 +11,7 @@ using System.Text;
 
 namespace FusionProgram.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static class ServiceCollectionExtension
     {
         public static AuthenticationBuilder AddJwtConfig(this IServiceCollection services, IConfiguration configuration)
         {

@@ -1,6 +1,6 @@
 ﻿using Quartz;
 using QuartzExtensions;
-using static FusionProgram.Extensions.ServiceCollectionExtensions;
+using static FusionProgram.Extensions.ServiceCollectionExtension;
 
 namespace FusionProgram.Job
 {

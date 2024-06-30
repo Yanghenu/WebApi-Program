@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiceStack.Redis;
+using System.Xml.XPath;
+using static ServiceStack.Diagnostics;
 
 namespace Redis.Service
 {
@@ -256,6 +258,18 @@ namespace Redis.Service
             }
 
             return false;
+        }
+
+        public IRedisClientsManager GetRedisClientsManager()
+        {
+            if (pool == null)
+            {
+                throw new Exception("redis连接失败！");
+            }
+            else
+            {
+                return pool;
+            }
         }
     }
 }
