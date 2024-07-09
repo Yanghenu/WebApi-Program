@@ -9,6 +9,7 @@ using AgileConfig.Client;
 using DapperSQL;
 using QuartzExtensions;
 using Microsoft.Extensions.DependencyInjection;
+using EFCoreLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddJwtConfig(builder.Configuration);
 builder.Services.AddPolicies();
+
+// ◊¢»ÎEF CORE
+builder.Services.AddMyEfCoreLibrary(builder.Configuration.GetValue<string>("ConnectionStrings"));
 
 // ∂¡»°≈‰÷√œÓ
 //var swaggerPort = builder.Configuration.GetValue<int>("SwaggerPort");
