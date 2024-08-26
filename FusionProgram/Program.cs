@@ -10,6 +10,13 @@ using DapperSQL;
 using QuartzExtensions;
 using Microsoft.Extensions.DependencyInjection;
 using EFCoreLibrary;
+using Orleans;
+using Orleans.Hosting;
+using Orleans.Storage;
+using Orleans.Runtime;
+using static DotNetCore.CAP.Dashboard.WarpResult;
+using System.Collections.Concurrent;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,19 +30,38 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
         config.AddAgileConfigCanReadTemplate(new ConfigClient(configRoot));
     }
 });
-builder.Host.ConfigureServices((hostingContext, services) =>
+builder.Host.ConfigureServices(async (hostingContext, services) =>
 {
     // 初始化定时任务
     // 方式一
-    FusionProgram.Quartz.QuartzInit.InitJob();
+    //FusionProgram.Quartz.QuartzInit.InitJob();
 
     //方式二
-    services.AddQuartService();
+    //services.AddQuartService();
+    //services.AddServiceByInterface(o => o.Name == "FusionProgram");
+    //IServiceProvider serviceProvider = services.BuildServiceProvider();
+    //serviceProvider.UseQuartz(x => x.Name == "FusionProgram");
+
     //MinIO需要注入HttpClient
     services.AddHttpClient();
-    services.AddServiceByInterface(o => o.Name == "FusionProgram");
-    IServiceProvider serviceProvider = services.BuildServiceProvider();
-    serviceProvider.UseQuartz(x => x.Name == "FusionProgram");
+});
+
+builder.Host.StartSiloAsync((_ctx, _builder) =>
+{
+    _builder.UseAdoNetClustering(_options =>
+    {
+        _options.Invariant = "Npgsql"; // 使用 SQL Server 的 ADO.NET 提供程序
+        _options.ConnectionString = _ctx.Configuration.GetValue<string>("DataBase_ConnectionString"); // SQL Server 的连接字符串
+    })
+    //.ConfigureServices(svc => {
+    //    svc.AddSingletonNamedService("SvcStatusStorage", (s, n) => (ILifecycleParticipant<ISiloLifecycle>)s.GetRequiredServiceByName<IGrainStorage>(n));
+    //})
+        .ConfigureLogging((ctx, l) => {
+            if (ctx.HostingEnvironment.IsDevelopment())
+            {
+                l.AddConsole();
+            }
+        });
 });
 
 builder.Services.AddControllers();

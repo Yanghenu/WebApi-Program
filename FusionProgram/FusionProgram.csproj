@@ -31,6 +31,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Minio" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
     <PackageReference Include="Quartz" Version="3.8.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.Exceptionless" Version="4.0.0" />
@@ -40,7 +41,9 @@
     <ProjectReference Include="..\AgileConfig\AgileConfig.csproj" />
     <ProjectReference Include="..\CAP\CAP.csproj" />
     <ProjectReference Include="..\Dapper\DapperSQL.csproj" />
+    <ProjectReference Include="..\EFCoreLibrary\EFCoreLibrary.csproj" />
     <ProjectReference Include="..\JWT_Authentication\JWT_Authentication.csproj" />
+    <ProjectReference Include="..\Orleans\Orleans.csproj" />
     <ProjectReference Include="..\QuartzExtensions\QuartzExtensions.csproj" />
     <ProjectReference Include="..\Redis.Service\Redis.csproj" />
     <ProjectReference Include="..\SignalR\SignalR.csproj" />

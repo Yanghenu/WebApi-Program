@@ -9,7 +9,7 @@ namespace CAP
         {
             services.AddCap(options =>
             {
-                options.UseSqlServer(configuration.GetValue<string>("ConnectionStrings:DefaultConnection"));
+                options.UsePostgreSql(configuration.GetValue<string>("DataBase_ConnectionString"));
                 options.UseRedis(configuration.GetValue<string>("CAP:RedisConnectionString"));
                 options.UseDashboard();
             });

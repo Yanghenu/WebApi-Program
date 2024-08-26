@@ -17,7 +17,7 @@ namespace DapperSQL
             {
                 if (!isInitialized)
                 {
-                    ConnectionString = configuration.GetSection("Dapper_ConnectionString").Value;
+                    ConnectionString = configuration.GetSection("DataBase_ConnectionString").Value;
                     isInitialized = true;
                 }
             }

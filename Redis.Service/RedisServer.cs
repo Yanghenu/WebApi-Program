@@ -36,15 +36,15 @@ namespace Redis.Service
                 }
             }
             //方式二
-            //if (!string.IsNullOrEmpty(redisHostStr))
-            //{
-            //    if (redisHostStr.Split(':').Length > 1)
-            //    {
-            //        string ip = redisHostStr.Split(':')[0];
-            //        int port = Convert.ToInt32(redisHostStr.Split(':')[1]);
-            //        client = new RedisClient(ip, port);
-            //    }
-            //}
+            if (!string.IsNullOrEmpty(redisHostStr))
+            {
+                if (redisHostStr.Split(':').Length > 1)
+                {
+                    string ip = redisHostStr.Split(':')[0];
+                    int port = Convert.ToInt32(redisHostStr.Split(':')[1]);
+                    client = new RedisClient(ip, port);
+                }
+            }
         }
 
         /// <summary>
